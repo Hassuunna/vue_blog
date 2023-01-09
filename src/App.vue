@@ -1,30 +1,55 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view />
+  <v-app id="inspire">
+    <v-navigation-drawer v-model="drawer">
+      <v-list-item>
+        <template v-slot:prepend>
+          <v-icon :icon="logo.icon"></v-icon>
+        </template>
+        <v-list-item-title class="title" v-text="logo.title">
+        </v-list-item-title>
+        <v-list-item-subtitle v-text="logo.caption"></v-list-item-subtitle>
+      </v-list-item>
+      <v-divider></v-divider>
+      <v-list density="compact">
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :value="item"
+          active-color="primary"
+        >
+          <template v-slot:prepend>
+            <v-icon :icon="item.icon"></v-icon>
+          </template>
+          <v-list-item-title v-text="item.title"></v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Application</v-toolbar-title>
+    </v-app-bar>
+
+    <v-main>
+      <!--  -->
+    </v-main>
+  </v-app>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+export default {
+  data: () => ({
+    drawer: null,
+    logo: {
+      title: "Great",
+      icon: "mdi-safe-square",
+      caption: "Great web app",
+    },
+    items: [
+      { title: "Home", icon: "mdi-home", link: "/" },
+      { title: "Add Post", icon: "mdi-note-plus", link: "/add-post" },
+      { title: "About", icon: "mdi-help-box", link: "/about" },
+    ],
+  }),
+};
+</script>
