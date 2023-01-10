@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row no-gutters="true">
       <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
         <v-card class="pa-1">
           <v-img height="200" :src="`/${post.image}`"></v-img>
@@ -32,7 +32,7 @@ export default {
       posts: [],
     };
   },
-  async created() {
+  async refresh() {
     this.posts = await API.getAllPosts();
   },
 };
