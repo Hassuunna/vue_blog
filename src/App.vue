@@ -15,6 +15,8 @@
           v-for="(item, i) in items"
           :key="i"
           :value="item"
+          v-bind:to="item.link"
+          link
           active-color="primary"
         >
           <template v-slot:prepend>
@@ -32,7 +34,7 @@
     </v-app-bar>
 
     <v-main>
-      <!--  -->
+      <router-view></router-view>
     </v-main>
   </v-app>
 </template>

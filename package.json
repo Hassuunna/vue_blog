@@ -2,8 +2,10 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": { "/api": { "target": "https://localhost:5000", "secure": false } },
   "scripts": {
     "serve": "vue-cli-service serve",
+    "live": "vue-cli-service lint && vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
